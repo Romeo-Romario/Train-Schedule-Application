@@ -1,0 +1,11 @@
+.container{
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+}
+
+.card{
+    color: rgba(255, 255, 255, 0.87);
+    color-scheme: light dark;
+    background-color: #303030;
+}

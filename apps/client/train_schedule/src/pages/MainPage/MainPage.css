@@ -1,0 +1,36 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: transparent;
+  }
+
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 1024px;
+    z-index: -1;
+  }
+
+  .background-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .top-container{
+    margin-top: calc(25vw + 100px); 
+    background: transparent;
+  }
+
+h2{
+    margin-top: 1.5vh;
+    margin-left: 3vh;
+    text-align: left;
+    color: white;
+}
+  
