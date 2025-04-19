@@ -18,7 +18,9 @@ const LogInModal = () => {
     if (form && form.checkValidity()) {
       try {
         const response = await fetch(
-          `/api/user/check?email=${email}&password=${password}`
+          `${
+            import.meta.env.VITE_API_URL
+          }/user/check?email=${email}&password=${password}`
         );
 
         if (!response.ok) {
