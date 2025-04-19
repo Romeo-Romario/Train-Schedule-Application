@@ -1,4 +1,3 @@
-import React from "react";
 import TableEntity from "./TableEntity";
 import { ScheduleEntity } from "../Types/SceduleEntity";
 import { useState, useEffect } from "react";

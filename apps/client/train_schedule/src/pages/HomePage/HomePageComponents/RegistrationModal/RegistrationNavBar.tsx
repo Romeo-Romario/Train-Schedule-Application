@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   LogIn: () => void;
   SignIn: () => void;

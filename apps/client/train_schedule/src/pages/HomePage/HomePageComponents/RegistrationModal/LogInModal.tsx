@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import { Navigate } from "react-router-dom";
 const LogInModal = () => {
   const formRef = useRef<HTMLFormElement>(null);

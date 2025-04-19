@@ -7,7 +7,8 @@ import "./RegistrationModalDialog.css";
 const RegistrationModal = () => {
   // Registration Modal Hook
   // Style either LogIn or SignIn
-  const [selectStyle, setStyle] = useState(true);
+  const [_, setStyle] = useState(true);
+
   return (
     <div
       className="modal fade"

@@ -29,7 +29,7 @@ const ScheduleDetailPage = () => {
   if (!state)
     return <div className="container text-center">No data found.</div>;
 
-  const [id, setId] = useState(state.id);
+  const [id, _] = useState(state.id);
   const [origin, setOrigin] = useState(state.origin);
   const [destination, setDestination] = useState(state.destination);
   const [departureTime, setDepartureTime] = useState(state.deppartureTime);

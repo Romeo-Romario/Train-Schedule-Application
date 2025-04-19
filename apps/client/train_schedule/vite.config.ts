@@ -7,9 +7,21 @@ export default defineConfig({
   server:{
     proxy:{
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://my-app-bacend-server-155423-a1d344694803.herokuapp.com/',
         changeOrigin: true
       }
     }
-  }
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom'],
+          vendor: ['lodash', 'axios']
+        }
+      }
+    }
+  },
 })
