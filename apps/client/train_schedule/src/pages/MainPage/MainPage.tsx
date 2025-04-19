@@ -15,7 +15,7 @@ const MainPage = () => {
         <img src={TrainImg} alt="Background" />
       </div>
       <div className="container text-center top-container">
-        <div className="card">
+        <div className="card" style={{ minWidth: "769px" }}>
           <div className="row justify-content-between">
             <div className="col-4">
               <h2 className="card-title">Train Schedule</h2>

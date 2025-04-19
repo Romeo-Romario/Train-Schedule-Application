@@ -68,6 +68,7 @@ const HomePage = () => {
           Register Now
         </button>
       </div>
+      <div style={{ height: "50px" }}></div>
       <RegistrationModal></RegistrationModal>
     </div>
   );
