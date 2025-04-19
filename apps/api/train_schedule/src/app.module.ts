@@ -7,23 +7,22 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { Schedule } from './schedule/entities/schedule.entity';
-
+import { DataSource } from 'typeorm';
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory :(configService: ConfigService) => ({
         type: "postgres",
-        host: configService.get('DB_HOST'),
-        port: +configService.get("DB_PORT"),
-        username: configService.get("DB_USER"),
-        password: configService.get("DB_PASSWORD"),
-        database: configService.get("DB_DB"),
+        url: configService.get<string>('DB_URL'),
         entities: [User, Schedule],
         synchronize: true,
+        ssl: {
+          rejectUnauthorized: false, 
+        },
       }),
-      inject: [ConfigService]
     }),
     UserModule,
     ScheduleModule
@@ -31,4 +30,19 @@ import { Schedule } from './schedule/entities/schedule.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+
+  async onApplicationBootstrap() {
+    try {
+      if (this.dataSource.isInitialized) {
+        console.log('✅ Successfully connected to the database');
+      } else {
+        await this.dataSource.initialize();
+        console.log('✅ Database connection initialized manually');
+      }
+    } catch (err) {
+      console.error('❌ Failed to connect to the database:', err);
+    }
+  }
+}
