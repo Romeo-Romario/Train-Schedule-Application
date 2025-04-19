@@ -1,7 +1,6 @@
 import TrainImg from "../../assets/images/trainStaing.gif";
 import SearchBar from "./MainPageComponents/SearchBar";
 import ScheduleTable from "./MainPageComponents/ScheduleTable";
-import { ScheduleEntity } from "./Types/SceduleEntity";
 import "./MainPage.css";
 import { useState } from "react";
 

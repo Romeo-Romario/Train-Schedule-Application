@@ -8,7 +8,7 @@ interface Props {
 const SearchBar = ({ setSearchType, setSearchText }: Props) => {
   const [buttonText, SetButtonText] = useState("Origin");
   const navigate = useNavigate();
-  const handleAddition = (e: React.MouseEvent) => {
+  const handleAddition = (_: React.MouseEvent) => {
     navigate(`/schedule/`, {
       state: {
         mode: "add",

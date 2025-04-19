@@ -63,7 +63,7 @@ const TableEntity = ({
   const handleDelete = async (e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      const response = await fetch(`/api/schedule/${id}`, {
+      await fetch(`/api/schedule/${id}`, {
         method: "DELETE",
       });
       onDelete(id);
