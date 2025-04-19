@@ -15,13 +15,17 @@ export class ScheduleController {
   }
 
   @Get('all')
-  findAll() {
-    return this.scheduleService.findAll();
+  findAll(@Query('sortBy') sortBy?: string) {
+    return this.scheduleService.findAll(sortBy);
   }
 
   @Get('search')
-  findGroup(@Query('param1') param1: string, @Query('param2') param2: string){
-    return this.scheduleService.findGroup(param1, param2);
+  findGroup(
+  @Query('param1') param1: string,
+  @Query('param2') param2: string,
+  @Query('sortBy') sortBy?: string
+  ) {
+  return this.scheduleService.findGroup(param1, param2, sortBy);
   }
   @Get(':id')
   findOne(@Param('id') id: string) {

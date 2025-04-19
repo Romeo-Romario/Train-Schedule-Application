@@ -7,7 +7,7 @@ interface Props {
   searchedType?: string;
   searchText?: string;
   sortBy: string;
-  setSortBy: (el: string) => void;
+  setSortBy: (value: string) => void;
 }
 
 const ScheduleTable = ({
@@ -25,9 +25,18 @@ const ScheduleTable = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const params = new URLSearchParams();
+        if (searchedType && searchText) {
+          params.append("param1", searchedType);
+          params.append("param2", searchText);
+        }
+        if (sortBy) {
+          params.append("sortBy", sortBy);
+        }
+
         const url = searchText
-          ? `/api/schedule/search?param1=${searchedType}&param2=${searchText}`
-          : `/api/schedule/all`;
+          ? `/api/schedule/search?${params.toString()}`
+          : `/api/schedule/all?${params.toString()}`;
 
         const response = await fetch(url);
         const jsonData = await response.json();
@@ -38,7 +47,7 @@ const ScheduleTable = ({
     };
 
     fetchData();
-  }, [searchedType, searchText]);
+  }, [searchedType, searchText, sortBy]);
 
   return (
     <div style={{ padding: "1.5vh" }}>
@@ -46,23 +55,59 @@ const ScheduleTable = ({
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col" onClick={() => setSortBy("origin")}>
-              Origin
+            <th scope="col">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setSortBy("origin")}
+              >
+                Origin
+              </button>
             </th>
-            <th scope="col" onClick={() => setSortBy("destination")}>
-              Destination
+            <th scope="col">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setSortBy("destination")}
+              >
+                Destination
+              </button>
             </th>
-            <th scope="col" onClick={() => setSortBy("departureTime")}>
-              Departure Time
+            <th scope="col">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setSortBy("departureTime")}
+              >
+                Departure Time
+              </button>
             </th>
-            <th scope="col" onClick={() => setSortBy("arrivalTime")}>
-              Arrival Time
+            <th scope="col">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setSortBy("arrivalTime")}
+              >
+                Arrival Time
+              </button>
             </th>
-            <th scope="col" onClick={() => setSortBy("date")}>
-              Date
+            <th scope="col">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setSortBy("date")}
+              >
+                Date
+              </button>
             </th>
-            <th scope="col" onClick={() => setSortBy("trainNumber")}>
-              Train Number
+            <th scope="col">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setSortBy("trainNumber")}
+              >
+                Train Number
+              </button>
             </th>
             <th></th>
           </tr>
