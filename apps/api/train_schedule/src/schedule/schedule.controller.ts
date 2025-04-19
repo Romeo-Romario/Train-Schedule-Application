@@ -10,12 +10,14 @@ export class ScheduleController {
 
   @Post('create')
   async create(@Body() createScheduleDto: CreateScheduleDto) {
+    console.log("Schedule succssesfully added", createScheduleDto);
     await this.scheduleService.create(createScheduleDto);
     return {message: "Schedule succssesfully added"}
   }
 
   @Get('all')
   findAll(@Query('sortBy') sortBy?: string) {
+    console.log("All elements sorted by: ", sortBy);
     return this.scheduleService.findAll(sortBy);
   }
 
@@ -25,6 +27,7 @@ export class ScheduleController {
   @Query('param2') param2: string,
   @Query('sortBy') sortBy?: string
   ) {
+    console.log("Find group sorted by: ", sortBy);
   return this.scheduleService.findGroup(param1, param2, sortBy);
   }
   @Get(':id')

@@ -56,29 +56,35 @@ const ScheduleDetailPage = () => {
       try {
         let response;
         if (isAdd) {
-          response = await fetch("/api/schedule/create", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(scheduleDto),
-          });
+          response = await fetch(
+            `${import.meta.env.VITE_API_URL}/schedule/create`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(scheduleDto),
+            }
+          );
         }
         if (isEdit) {
           console.log(id);
-          response = await fetch(`/api/schedule/${id}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(scheduleDto),
-          });
+          response = await fetch(
+            `${import.meta.env.VITE_API_URL}/schedule/${id}`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(scheduleDto),
+            }
+          );
         }
         const data = await response!.json();
         console.log(data.message);
         setNavigateToMain(true);
       } catch (err) {
-        console.log("Bad request");
+        console.log("Bad request", err);
         SetinValid(true);
       }
     } else {

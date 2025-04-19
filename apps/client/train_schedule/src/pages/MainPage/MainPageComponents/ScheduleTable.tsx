@@ -34,8 +34,10 @@ const ScheduleTable = ({
         }
 
         const url = searchText
-          ? `/api/schedule/search?${params.toString()}`
-          : `/api/schedule/all?${params.toString()}`;
+          ? `${
+              import.meta.env.VITE_API_URL
+            }/schedule/search?${params.toString()}`
+          : `${import.meta.env.VITE_API_URL}/schedule/all?${params.toString()}`;
 
         const response = await fetch(url);
         const jsonData = await response.json();
